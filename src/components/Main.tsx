@@ -6,6 +6,7 @@ import Graph from "./Graph";
 const Main = () => {
     const [selectedBreeds, setSelectedBreeds] = useState<IBreed[]>([]);
     const [compare, setCompare] = useState("weight");
+    const [units, setUnits] = useState("imperial");
   
     const logbreeds  = () => {
       console.log(selectedBreeds);
@@ -15,7 +16,7 @@ const Main = () => {
         <div>
             <button onClick={logbreeds}>test</button>
             <Selection setSelectedBreeds={setSelectedBreeds} compare={compare} setCompare={setCompare}/>
-            <Graph compare={compare} breeds={selectedBreeds}/>
+            <Graph compare={compare} breeds={selectedBreeds} units={units}/>
         </div>
     )
 };

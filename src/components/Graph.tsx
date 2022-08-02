@@ -5,10 +5,10 @@ import BarChart from "../barChart";
 import { Grid, Box } from "@mui/material";
 
 interface GraphProps {
-    compare: string,
-    breeds: IBreed[],
-    units: string,
-    hidden: boolean,
+    compare: string;
+    breeds: IBreed[];
+    units: string;
+    hidden: boolean;
     setHidden: Function;
 }
 
@@ -16,7 +16,7 @@ const Graph = (props: GraphProps) => {
     const [modBreeds, setModBreeds] = useState<IBreed[]>([]);
     const [breedChart, setBreedChart] = useState<any>(null);
     const svgRef = useRef<HTMLDivElement>(null);
-    const [title, setTitle] = useState("Weight")
+    const [title, setTitle] = useState(" Average Weight");
 
     useEffect(() => {
         if (props.compare === "height") {
@@ -36,6 +36,7 @@ const Graph = (props: GraphProps) => {
                 title: "Dog Breeds",
                 yDomain: undefined,
             });
+            setTitle("Average Height");
             setBreedChart(chart);
         } else if (props.compare === "weight") {
             const chart = BarChart(modBreeds, {
@@ -54,6 +55,7 @@ const Graph = (props: GraphProps) => {
                 title: "Dog Breeds",
                 yDomain: undefined,
             });
+            setTitle("Average Weight");
             setBreedChart(chart);
         } else if (props.compare === "lifespan") {
             const chart = BarChart(modBreeds, {
@@ -72,15 +74,19 @@ const Graph = (props: GraphProps) => {
                 title: "Dog Breeds",
                 yDomain: undefined,
             });
+            setTitle("Average Lifespan");
             setBreedChart(chart);
         }
         //chartUpdate();
     }, [props.compare]);
 
     useEffect(() => {
-      chartUpdate();
-    }, [breedChart])
+        chartUpdate();
+    }, [breedChart]);
     useEffect(() => {
+        if(props.breeds.length === 0){
+            props.setHidden(true);
+        }
         const moddedBreeds = props.breeds.map((breed) => {
             const retBreed = {
                 height: breed.height,
@@ -108,7 +114,7 @@ const Graph = (props: GraphProps) => {
                 ),
                 yFormat: "f",
                 yLabel: "Pounds",
-                width: 100 * modBreeds.length,
+                width: 500,
                 height: 500,
                 color: "steelblue",
                 title: "Dog Breeds",
@@ -127,15 +133,13 @@ const Graph = (props: GraphProps) => {
         return (retArr[0] + retArr[1]) / 2;
     };
     const chartUpdate = () => {
-      if(svgRef.current != null){
-        const svg = d3.select(svgRef.current);
-        svg.selectAll("*").remove();
-        if(breedChart != null){
-          svg.node()?.appendChild(breedChart);
-        };
-      }
-        
-       
+        if (svgRef.current != null) {
+            const svg = d3.select(svgRef.current);
+            svg.selectAll("*").remove();
+            if (breedChart != null) {
+                svg.node()?.appendChild(breedChart);
+            }
+        }
     };
     const handleClick = () => {
         console.log(modBreeds);
@@ -145,8 +149,9 @@ const Graph = (props: GraphProps) => {
 
     return (
         <Grid container alignItems="center" justifyContent="center">
-            <h1>Graph</h1>
-            <h1>{title}</h1>
+            <Grid item xs={12} justifyContent="center" alignItems="center">
+                <h1 hidden={props.hidden}>{title}</h1>
+            </Grid>
             <button onClick={handleClick}>Graph test</button>
             <Grid
                 container

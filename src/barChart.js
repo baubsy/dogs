@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-
+//modifed from https://observablehq.com/@d3/bar-chart
 // Copyright 2021 Observable, Inc.
 // Released under the ISC license.
 // https://observablehq.com/@d3/bar-chart

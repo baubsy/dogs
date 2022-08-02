@@ -3,6 +3,7 @@ import Selection from "./Selection";
 import IBreed from "../dogBreed";
 import Graph from "./Graph";
 import { Grid, Box, Container } from "@mui/material";
+import Header from "./Header";
 
 const Main = () => {
     const [selectedBreeds, setSelectedBreeds] = useState<IBreed[]>([]);
@@ -20,15 +21,16 @@ const Main = () => {
         <Container>
             <Box>
                 <Grid container justifyContent="center" alignItems="center">
-                    <Grid item xs={4}>
-                        <button onClick={logbreeds}>test</button>
+                    <Grid item xs={12}>
+                        <Header/>
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={12}>
                         <Selection
                             setSelectedBreeds={setSelectedBreeds}
                             compare={compare}
                             setCompare={setCompare}
                             selectedBreeds={selectedBreeds}
+                            setGraphHidden={setGraphHidden}
                         />
                     </Grid>
                     <Grid item xs={12}>

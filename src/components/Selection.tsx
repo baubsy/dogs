@@ -82,9 +82,9 @@ const Selection = (props: SelectionProps) => {
                         )}
                     />
                 </Grid>
+                <Tooltip title={buttonTooltip}>
                 <Grid item xs={4} style={{ display: "flex" }}>
-                    <Tooltip title={buttonTooltip}>
-                        <span>
+                    
                             <Button
                                 disabled={buttonDisable}
                                 onClick={handleClick}
@@ -92,9 +92,9 @@ const Selection = (props: SelectionProps) => {
                             >
                                 Compare
                             </Button>
-                        </span>
-                    </Tooltip>
+                    
                 </Grid>
+                </Tooltip>
                 <FormControl>
                     <FormLabel id="comp-radio-buttons-label">
                         Compare:{" "}

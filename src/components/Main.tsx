@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Grid, Box, Container } from "@mui/material";
 import Selection from "./Selection";
 import IBreed from "../dogBreed";
 import Graph from "./Graph";
-import { Grid, Box, Container } from "@mui/material";
 import Header from "./Header";
 
 const Main = () => {
@@ -21,9 +21,6 @@ const Main = () => {
         <Container>
             <Box>
                 <Grid container justifyContent="center" alignItems="center">
-                    <Grid item xs={12}>
-                        <Header/>
-                    </Grid>
                     <Grid item xs={12}>
                         <Selection
                             setSelectedBreeds={setSelectedBreeds}

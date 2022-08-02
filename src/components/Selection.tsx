@@ -25,7 +25,9 @@ const Selection = (props: SelectionProps) => {
     const [breeds, setBreeds] = useState<IBreed[]>([]);
     const [disable, setDisable] = useState(false);
     const [buttonDisable, setButtonDisable] = useState(true);
-    const [buttonTooltip, setButtonTooltip] = useState("Please select at least one breed");
+    const [buttonTooltip, setButtonTooltip] = useState(
+        "Please select at least one breed"
+    );
 
     useEffect(() => {
         if (props.selectedBreeds.length >= 5) {
@@ -83,17 +85,15 @@ const Selection = (props: SelectionProps) => {
                     />
                 </Grid>
                 <Tooltip title={buttonTooltip}>
-                <Grid item xs={4} style={{ display: "flex" }}>
-                    
-                            <Button
-                                disabled={buttonDisable}
-                                onClick={handleClick}
-                                variant="contained"
-                            >
-                                Compare
-                            </Button>
-                    
-                </Grid>
+                    <Grid item xs={4} style={{ display: "flex" }}>
+                        <Button
+                            disabled={buttonDisable}
+                            onClick={handleClick}
+                            variant="contained"
+                        >
+                            Compare
+                        </Button>
+                    </Grid>
                 </Tooltip>
                 <FormControl>
                     <FormLabel id="comp-radio-buttons-label">

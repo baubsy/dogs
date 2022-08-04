@@ -152,7 +152,6 @@ const Graph = (props: GraphProps) => {
             <Grid item xs={12} justifyContent="center" alignItems="center">
                 <h1 hidden={props.hidden}>{title}</h1>
             </Grid>
-            <button onClick={handleClick}>Graph test</button>
             <Grid
                 container
                 item

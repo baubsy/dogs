@@ -65,7 +65,7 @@ const Selection = (props: SelectionProps) => {
     return (
         <div>
             <Grid container>
-                <Grid item xs={8}>
+                <Grid item xs={11}>
                     <Autocomplete
                         getOptionDisabled={checkDisable}
                         multiple
@@ -85,7 +85,7 @@ const Selection = (props: SelectionProps) => {
                     />
                 </Grid>
                 <Tooltip title={buttonTooltip}>
-                    <Grid item xs={4} style={{ display: "flex" }}>
+                    <Grid item xs={1} style={{ display: "flex" }}>
                         <Button
                             disabled={buttonDisable}
                             onClick={handleClick}

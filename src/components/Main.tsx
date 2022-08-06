@@ -39,7 +39,6 @@ const Main = () => {
                     </Grid>
                 </Grid>
             </Box>
-            <button onClick={logbreeds}>Log Breeds</button>
         </Container>       
     );
 };

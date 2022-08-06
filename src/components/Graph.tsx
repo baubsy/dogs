@@ -116,7 +116,7 @@ const Graph = (props: GraphProps) => {
                 yLabel: "Pounds",
                 width: 500,
                 height: 500,
-                color: "steelblue",
+                color: "#A8926C",
                 title: "Dog Breeds",
                 yDomain: undefined,
             });

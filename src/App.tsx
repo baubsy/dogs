@@ -1,11 +1,13 @@
 import React from 'react';
 import {Route, BrowserRouter} from "react-router-dom";
-import { Box } from '@mui/system';
+import { Box, ThemeProvider } from '@mui/system';
 import logo from './logo.svg';
 import './App.css';
 import Main from './components/Main';
 import Header from './components/Header';
 import About from './components/About';
+
+
 
 function App() {
   return (

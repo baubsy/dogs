@@ -6,7 +6,7 @@ import Main from "./Main";
 
 const Header = () => {
     return (
-        <div>
+        <div className="header">
             <Grid container>
                 <Grid item xs={12}>
                     <h1>Dog Breeds Comparison</h1>

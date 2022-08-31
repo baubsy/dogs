@@ -6,22 +6,18 @@ import './App.css';
 import Main from './components/Main';
 import Header from './components/Header';
 import About from './components/About';
+import Footer from './components/Footer';
 
 
 
 function App() {
   return (
     <BrowserRouter>
-    <Box  sx={{
-                backgroundColor: '#CEE1F5',
-                border: '3px solid black',
-                borderRadius: '6 px',
-                margin: '50px',
-                padding: '30px'
-            }}>
+    <Box>
       <Route path="/" component={Header}/>
       <Route path="/" exact component={Main}/>
       <Route path="/about" exact component={About}/>
+      <Route path="/" component={Footer}/>
       </Box>
     </BrowserRouter>
   );

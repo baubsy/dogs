@@ -11,6 +11,6 @@ text {
   word-break: break-all; 
   max-block-size: 100px;
 }
-body {
-  background-color: #7D92A8;
+.header {
+  background-color: #CEE1F5;
 }

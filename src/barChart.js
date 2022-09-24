@@ -46,7 +46,6 @@ function BarChart(
 
     // Compute titles.
     if (title === "values") {
-        console.log("test2");
         const formatValue = yScale.tickFormat(100, yFormat);
         title = (i) => `${X[i]}\n${formatValue(Y[i])}`;
     } else {

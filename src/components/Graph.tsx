@@ -23,6 +23,7 @@ const Graph = (props: GraphProps) => {
             const chart = BarChart(modBreeds, {
                 x: (d) => d.name,
                 y: (d) => d.avg_height,
+                title: "values",
                 xDomain: d3.groupSort(
                     modBreeds,
                     ([d]) => d.name,
@@ -33,7 +34,6 @@ const Graph = (props: GraphProps) => {
                 width: 500,
                 height: 500,
                 color: "#A8926C",
-                title: "Dog Breeds",
                 yDomain: undefined,
             });
             setTitle("Average Height");
@@ -52,7 +52,7 @@ const Graph = (props: GraphProps) => {
                 width: 500,
                 height: 500,
                 color: "#A8926C",
-                title: "Dog Breeds",
+                title: "values",
                 yDomain: undefined,
             });
             setTitle("Average Weight");
@@ -71,7 +71,7 @@ const Graph = (props: GraphProps) => {
                 width: 500,
                 height: 500,
                 color: "#A8926C",
-                title: "Dog Breeds",
+                title: "values",
                 yDomain: undefined,
             });
             setTitle("Average Lifespan");
@@ -117,7 +117,7 @@ const Graph = (props: GraphProps) => {
                 width: 500,
                 height: 500,
                 color: "#A8926C",
-                title: "Dog Breeds",
+                title: "values",
                 yDomain: undefined,
             });
             setBreedChart(chart);

@@ -45,7 +45,7 @@ function BarChart(
     const yAxis = d3.axisLeft(yScale).ticks(height / 40, yFormat);
 
     // Compute titles.
-    if (title === undefined) {
+    if (title === "values") {
         const formatValue = yScale.tickFormat(100, yFormat);
         title = (i) => `${X[i]}\n${formatValue(Y[i])}`;
     } else {

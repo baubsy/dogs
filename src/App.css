@@ -13,4 +13,8 @@ text {
 }
 .header {
   background-color: #CEE1F5;
+  border-bottom: 3px solid black;
+}
+.title{
+  margin: auto;
 }

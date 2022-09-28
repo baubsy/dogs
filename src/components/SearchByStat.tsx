@@ -43,6 +43,13 @@ const SearchByStat = () => {
                     breedArr.push(breed);
                 } else{
                     //check if lighter than breeds in breedArr and replace if so
+                    for(let i = 0; i < breedArr.length; i++){
+                        if(breedArr[i]!.avg_weight! > breed!.avg_weight!){
+                            breedArr.splice(i, 1);
+                            breedArr.push(breed);
+                            break;
+                        }
+                    }
                 }
             });
             setListedBreeds(breedArr);
@@ -59,6 +66,16 @@ const SearchByStat = () => {
     const getBreeds = async () => {
         const response = await dogsAPI.get("/breeds");
         setBreeds(response.data);
+    };
+    const debugClick = () => {
+      let dBreed: IBreed = modBreeds[0];
+        modBreeds.map(mBreed => {
+            if(mBreed!.avg_weight! < dBreed!.avg_weight!){
+                dBreed = mBreed;
+            }
+        })
+        console.log(listedBreeds);
+        console.log(dBreed);
     };
     return (
         <div>
@@ -99,7 +116,7 @@ const SearchByStat = () => {
                     />
                 </RadioGroup>
             </FormControl>
-            <button onClick={() => console.log(listedBreeds)}>Debug</button>
+            <button onClick={() => debugClick()}>Debug</button>
         </div>
     );
 };

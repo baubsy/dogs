@@ -12,10 +12,50 @@ import IBreed from "../dogBreed";
 
 const SearchByStat = () => {
     const [breeds, setBreeds] = useState<IBreed[]>([]);
-    const [selection, setSelection] = useState<String>();
+    const [selection, setSelection] = useState<String>("heaviest");
+    const [modBreeds, setModBreeds] = useState<IBreed[]>([]);
+    const [listedBreeds, setListedBreeds] = useState<IBreed[]>([]);
+
     useEffect(() => {
         getBreeds();
     }, []);
+    useEffect(() => {
+        const moddedBreeds = breeds.map((breed) => {
+            const retBreed = {
+                height: breed.height,
+                avg_height: apiAvg(breed.height.imperial),
+                name: breed.name,
+                weight: breed.weight,
+                avg_weight: apiAvg(breed.weight.imperial),
+                avg_life_span: apiAvg(breed.life_span),
+                life_span: breed.life_span,
+            };
+            return retBreed;
+        });
+        setModBreeds(moddedBreeds);
+    }, [breeds]);
+    useEffect(() => {
+        setListedBreeds([]);
+        const breedArr: IBreed[] = [];
+        if (selection === "lightest") {
+            modBreeds.map((breed) => {
+                if (breedArr.length < 5) {
+                    breedArr.push(breed);
+                } else{
+                    //check if lighter than breeds in breedArr and replace if so
+                }
+            });
+            setListedBreeds(breedArr);
+        }
+    }, [selection]);
+    const apiAvg = (str: string) => {
+        if (!str.includes("-")) {
+            return parseInt(str);
+        }
+        const arr = str.split("-");
+        const retArr = arr.map((x) => parseFloat(x.replace(/[^0-9.]/g, "")));
+        return (retArr[0] + retArr[1]) / 2;
+    };
     const getBreeds = async () => {
         const response = await dogsAPI.get("/breeds");
         setBreeds(response.data);
@@ -59,7 +99,7 @@ const SearchByStat = () => {
                     />
                 </RadioGroup>
             </FormControl>
-            <button onClick={() => console.log(breeds)}>Debug</button>
+            <button onClick={() => console.log(listedBreeds)}>Debug</button>
         </div>
     );
 };

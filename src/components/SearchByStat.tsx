@@ -7,6 +7,7 @@ import {
     Radio,
     FormControlLabel,
 } from "@mui/material";
+import BreedCard from "./BreedCard";
 
 import IBreed from "../dogBreed";
 
@@ -29,6 +30,7 @@ const SearchByStat = () => {
                 avg_weight: apiAvg(breed.weight.imperial),
                 avg_life_span: apiAvg(breed.life_span),
                 life_span: breed.life_span,
+                img: breed.image!.url!,
             };
             return retBreed;
         });
@@ -117,6 +119,7 @@ const SearchByStat = () => {
                 </RadioGroup>
             </FormControl>
             <button onClick={() => debugClick()}>Debug</button>
+            {listedBreeds.map((breed) => <BreedCard breed={breed}/>)}
         </div>
     );
 };

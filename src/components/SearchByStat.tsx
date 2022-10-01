@@ -6,6 +6,7 @@ import {
     RadioGroup,
     Radio,
     FormControlLabel,
+    Grid
 } from "@mui/material";
 import BreedCard from "./BreedCard";
 
@@ -36,6 +37,7 @@ const SearchByStat = () => {
         });
         setModBreeds(moddedBreeds);
     }, [breeds]);
+    /*
     useEffect(() => {
         setListedBreeds([]);
         const breedArr: IBreed[] = [];
@@ -44,7 +46,27 @@ const SearchByStat = () => {
                 if (breedArr.length < 5) {
                     breedArr.push(breed);
                 } else{
-                    //check if lighter than breeds in breedArr and replace if so
+                    for(let i = 0; i < breedArr.length; i++){
+                        if(breedArr[i]!.avg_weight! > breed!.avg_weight!){
+                            breedArr.splice(i, 1);
+                            breedArr.push(breed);
+                            break;
+                        }
+                    }
+                }
+            });
+            setListedBreeds(breedArr);
+        }
+    }, [selection]);
+    */
+    useEffect(() => {
+        setListedBreeds([]);
+        const breedArr: IBreed[] = [];
+        if (selection === "lightest") {
+            modBreeds.map((breed) => {
+                if (breedArr.length < 5) {
+                    breedArr.push(breed);
+                } else{
                     for(let i = 0; i < breedArr.length; i++){
                         if(breedArr[i]!.avg_weight! > breed!.avg_weight!){
                             breedArr.splice(i, 1);
@@ -119,7 +141,9 @@ const SearchByStat = () => {
                 </RadioGroup>
             </FormControl>
             <button onClick={() => debugClick()}>Debug</button>
-            {listedBreeds.map((breed) => <BreedCard breed={breed}/>)}
+            <Grid container spacing={2}>
+            {listedBreeds.map((breed) => <Grid item><BreedCard breed={breed}/></Grid>)}
+            </Grid>
         </div>
     );
 };

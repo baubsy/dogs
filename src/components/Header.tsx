@@ -9,7 +9,8 @@ const Header = () => {
         <div className="header">
             <Grid container>
                 <Grid item xs={12}>
-                    <h1 className="title">Dog Breeds Comparison</h1>
+                    <h1 className="title">Dog Breeds Comparison <i className="fa-solid fa-dog"/></h1>
+                    
                 </Grid>
                 <Grid container item xs={12} justifyContent="center" alignContent="center">
                     <Grid item xs={1}>

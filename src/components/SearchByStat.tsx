@@ -6,7 +6,7 @@ import {
     RadioGroup,
     Radio,
     FormControlLabel,
-    Grid
+    Grid,
 } from "@mui/material";
 import BreedCard from "./BreedCard";
 
@@ -37,48 +37,69 @@ const SearchByStat = () => {
         });
         setModBreeds(moddedBreeds);
     }, [breeds]);
-    /*
+
     useEffect(() => {
         setListedBreeds([]);
         const breedArr: IBreed[] = [];
-        if (selection === "lightest") {
-            modBreeds.map((breed) => {
-                if (breedArr.length < 5) {
-                    breedArr.push(breed);
-                } else{
-                    for(let i = 0; i < breedArr.length; i++){
-                        if(breedArr[i]!.avg_weight! > breed!.avg_weight!){
-                            breedArr.splice(i, 1);
-                            breedArr.push(breed);
-                            break;
+
+        modBreeds.map((breed) => {
+            if (breedArr.length < 5) {
+                breedArr.push(breed);
+            } else {
+                switch (selection) {
+                    case "lightest":
+                        for (let i = 0; i < breedArr.length; i++) {
+                            if (breedArr[i]!.avg_weight! > breed!.avg_weight!) {
+                                breedArr.splice(i, 1);
+                                breedArr.push(breed);
+                                break;
+                            }
                         }
-                    }
-                }
-            });
-            setListedBreeds(breedArr);
-        }
-    }, [selection]);
-    */
-    useEffect(() => {
-        setListedBreeds([]);
-        const breedArr: IBreed[] = [];
-        if (selection === "lightest") {
-            modBreeds.map((breed) => {
-                if (breedArr.length < 5) {
-                    breedArr.push(breed);
-                } else{
-                    for(let i = 0; i < breedArr.length; i++){
-                        if(breedArr[i]!.avg_weight! > breed!.avg_weight!){
-                            breedArr.splice(i, 1);
-                            breedArr.push(breed);
-                            break;
+                        break;
+                    case "heaviest":
+                        for (let i = 0; i < breedArr.length; i++) {
+                            if (breedArr[i]!.avg_weight! < breed!.avg_weight!) {
+                                breedArr.splice(i, 1);
+                                breedArr.push(breed);
+                                break;
+                            }
                         }
-                    }
+                        break;
+                    case "shortest":
+                        for (let i = 0; i < breedArr.length; i++) {
+                            if (breedArr[i]!.avg_height! > breed!.avg_height!) {
+                                breedArr.splice(i, 1);
+                                breedArr.push(breed);
+                                break;
+                            }
+                        }
+                        break;
+                    case "tallest":
+                        for (let i = 0; i < breedArr.length; i++) {
+                            if (breedArr[i]!.avg_height! < breed!.avg_height!) {
+                                breedArr.splice(i, 1);
+                                breedArr.push(breed);
+                                break;
+                            }
+                        }
+                        break;
+                    case "lifespan":
+                        for (let i = 0; i < breedArr.length; i++) {
+                            if (breedArr[i]!.avg_life_span! < breed!.avg_life_span!) {
+                                breedArr.splice(i, 1);
+                                breedArr.push(breed);
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        console.log("switch error");
                 }
-            });
-            setListedBreeds(breedArr);
-        }
+            }
+        });
+        setListedBreeds(breedArr);
     }, [selection]);
+
     const apiAvg = (str: string) => {
         if (!str.includes("-")) {
             return parseInt(str);
@@ -92,12 +113,12 @@ const SearchByStat = () => {
         setBreeds(response.data);
     };
     const debugClick = () => {
-      let dBreed: IBreed = modBreeds[0];
-        modBreeds.map(mBreed => {
-            if(mBreed!.avg_weight! < dBreed!.avg_weight!){
+        let dBreed: IBreed = modBreeds[0];
+        modBreeds.map((mBreed) => {
+            if (mBreed!.avg_weight! < dBreed!.avg_weight!) {
                 dBreed = mBreed;
             }
-        })
+        });
         console.log(listedBreeds);
         console.log(dBreed);
     };
@@ -142,7 +163,11 @@ const SearchByStat = () => {
             </FormControl>
             <button onClick={() => debugClick()}>Debug</button>
             <Grid container spacing={2}>
-            {listedBreeds.map((breed) => <Grid item><BreedCard breed={breed}/></Grid>)}
+                {listedBreeds.map((breed) => (
+                    <Grid item>
+                        <BreedCard breed={breed} />
+                    </Grid>
+                ))}
             </Grid>
         </div>
     );

@@ -7,6 +7,7 @@ import {
     Radio,
     FormControlLabel,
     Grid,
+    Box,
 } from "@mui/material";
 import BreedCard from "./BreedCard";
 
@@ -85,7 +86,10 @@ const SearchByStat = () => {
                         break;
                     case "lifespan":
                         for (let i = 0; i < breedArr.length; i++) {
-                            if (breedArr[i]!.avg_life_span! < breed!.avg_life_span!) {
+                            if (
+                                breedArr[i]!.avg_life_span! <
+                                breed!.avg_life_span!
+                            ) {
                                 breedArr.splice(i, 1);
                                 breedArr.push(breed);
                                 break;
@@ -123,53 +127,59 @@ const SearchByStat = () => {
         console.log(dBreed);
     };
     return (
-        <div>
-            <h1>Search by Stat</h1>
-            <FormControl>
-                <FormLabel id="comp-radio-buttons-label">Search By: </FormLabel>
-                <RadioGroup
-                    row
-                    aria-labelledby="comp-radio-buttons-label"
-                    value={selection}
-                    onChange={(event, value) => setSelection(value)}
-                    name="comp-radio-buttons"
-                >
-                    <FormControlLabel
-                        value="lightest"
-                        control={<Radio />}
-                        label="Lightest"
-                    />
-                    <FormControlLabel
-                        value="heaviest"
-                        control={<Radio />}
-                        label="Heaviest"
-                    />
-                    <FormControlLabel
-                        value="shortest"
-                        control={<Radio />}
-                        label="Shortest"
-                    />
-                    <FormControlLabel
-                        value="tallest"
-                        control={<Radio />}
-                        label="Tallest"
-                    />
-                    <FormControlLabel
-                        value="lifespan"
-                        control={<Radio />}
-                        label="Lifespan"
-                    />
-                </RadioGroup>
-            </FormControl>
+        <Grid container alignItems="center" justifyContent="center">
+            <Grid item xs={12}>
+                <h1>Search by Stat</h1>
+            </Grid>
+            <Box alignItems="center" justifyContent="center">
+                <FormControl className="formControl">
+                    <FormLabel id="comp-radio-buttons-label">
+                        Search By:{" "}
+                    </FormLabel>
+                    <RadioGroup
+                        row
+                        aria-labelledby="comp-radio-buttons-label"
+                        value={selection}
+                        onChange={(event, value) => setSelection(value)}
+                        name="comp-radio-buttons"
+                    >
+                        <FormControlLabel
+                            value="lightest"
+                            control={<Radio />}
+                            label="Lightest"
+                        />
+                        <FormControlLabel
+                            value="heaviest"
+                            control={<Radio />}
+                            label="Heaviest"
+                        />
+                        <FormControlLabel
+                            value="shortest"
+                            control={<Radio />}
+                            label="Shortest"
+                        />
+                        <FormControlLabel
+                            value="tallest"
+                            control={<Radio />}
+                            label="Tallest"
+                        />
+                        <FormControlLabel
+                            value="lifespan"
+                            control={<Radio />}
+                            label="Lifespan"
+                        />
+                    </RadioGroup>
+                </FormControl>
+            </Box>
             <button onClick={() => debugClick()}>Debug</button>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {listedBreeds.map((breed) => (
                     <Grid item>
                         <BreedCard breed={breed} />
                     </Grid>
                 ))}
             </Grid>
-        </div>
+        </Grid>
     );
 };
 

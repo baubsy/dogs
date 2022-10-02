@@ -13,9 +13,16 @@ text {
 }
 .header {
   background-color: #CEE1F5;
-  border-bottom: 3px solid black;
+  border-bottom: 2px solid black;
+  margin-bottom: 5px;
 }
 .title{
   margin: auto;
   width: fit-content;
+}
+
+.radioForm {
+  align-items: center;
+  justify-content: center;
+  width:auto;
 }

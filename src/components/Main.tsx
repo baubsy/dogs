@@ -16,6 +16,7 @@ const Main = () => {
     };
 
     return (
+        <Container>
             <Box>
                 <Grid container justifyContent="center" alignItems="center">
                     <Grid item xs={12}>
@@ -37,7 +38,8 @@ const Main = () => {
                         />
                     </Grid>
                 </Grid>
-            </Box>     
+            </Box>
+        </Container>       
     );
 };
 

@@ -15,7 +15,7 @@ import IBreed from "../dogBreed";
 
 const SearchByStat = () => {
     const [breeds, setBreeds] = useState<IBreed[]>([]);
-    const [selection, setSelection] = useState<String>("heaviest");
+    const [selection, setSelection] = useState<String>("lightest");
     const [modBreeds, setModBreeds] = useState<IBreed[]>([]);
     const [listedBreeds, setListedBreeds] = useState<IBreed[]>([]);
 
@@ -56,6 +56,7 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
+                        breedArr.sort((a, b) => a.avg_weight! - b.avg_weight!);
                         break;
                     case "heaviest":
                         for (let i = 0; i < breedArr.length; i++) {
@@ -65,6 +66,7 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
+                        breedArr.sort((a, b) => a.avg_weight! - b.avg_weight!);
                         break;
                     case "shortest":
                         for (let i = 0; i < breedArr.length; i++) {
@@ -74,6 +76,7 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
+                        breedArr.sort((a, b) => a.avg_height! - b.avg_height!);
                         break;
                     case "tallest":
                         for (let i = 0; i < breedArr.length; i++) {
@@ -83,6 +86,7 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
+                        breedArr.sort((a, b) => a.avg_height! - b.avg_height!);
                         break;
                     case "lifespan":
                         for (let i = 0; i < breedArr.length; i++) {
@@ -95,6 +99,7 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
+                        breedArr.sort((a, b) => a.avg_life_span! - b.avg_life_span!);
                         break;
                     default:
                         console.log("switch error");
@@ -102,7 +107,7 @@ const SearchByStat = () => {
             }
         });
         setListedBreeds(breedArr);
-    }, [selection]);
+    }, [selection, modBreeds]);
 
     const apiAvg = (str: string) => {
         if (!str.includes("-")) {

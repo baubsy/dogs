@@ -16,7 +16,7 @@ const BreedCard = (props: CardProps) => {
                     image= {props.breed.img}
                     alt={props.breed.name}/>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                         {props.breed.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{fontSize: 14}} align="left">

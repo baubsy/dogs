@@ -9,15 +9,40 @@ const Header = () => {
         <div className="header">
             <Grid container>
                 <Grid item xs={12}>
-                    <h1 className="title">Dog Breeds Comparison <i className="fa-solid fa-dog"/></h1>
-                    
+                    <h1 className="title">
+                        Dog Breeds Comparison <i className="fa-solid fa-dog" />
+                    </h1>
                 </Grid>
-                <Grid container item xs={12} justifyContent="center" alignContent="center">
+                <Grid
+                    container
+                    item
+                    xs={12}
+                    justifyContent="center"
+                    alignContent="center"
+                >
                     <Grid item xs={1}>
-                      <Button><Link to="/" style={{ textDecoration: 'none' }}>Home</Link></Button>
+                        <Button>
+                            <Link to="/" style={{ textDecoration: "none" }}>
+                                Graph Comparison
+                            </Link>
+                        </Button>
                     </Grid>
                     <Grid item xs={1}>
-                    <Button><Link to="/about" style={{ textDecoration: 'none' }}>About</Link></Button>
+                        <Button>
+                            <Link to="/statSearch" style={{ textDecoration: "none" }}>
+                                Top Dogs by Stat
+                            </Link>
+                        </Button>
+                    </Grid>
+                    <Grid item xs={1}>
+                        <Button>
+                            <Link
+                                to="/about"
+                                style={{ textDecoration: "none" }}
+                            >
+                                About
+                            </Link>
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>

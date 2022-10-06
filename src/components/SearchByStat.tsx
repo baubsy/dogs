@@ -176,7 +176,6 @@ const SearchByStat = () => {
                     </RadioGroup>
                 </FormControl>
             </Box>
-            <button onClick={() => debugClick()}>Debug</button>
             <Grid container spacing={2} alignItems="center" justifyContent="center">
                 {listedBreeds.map((breed) => (
                     <Grid item>

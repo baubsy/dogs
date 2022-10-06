@@ -9,12 +9,13 @@ interface CardProps {
 const BreedCard = (props: CardProps) => {
     return (
         <div>
-            <Card sx={{maxWidth: 250, minWidth: 250}}>
+            <Card sx={{maxWidth: 250, minWidth: 250, minHeight: 325}}>
                 <CardMedia
                     component="img"
                     height="140"
                     image= {props.breed.img}
-                    alt={props.breed.name}/>
+                    alt={props.breed.name}
+                    />
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
                         {props.breed.name}

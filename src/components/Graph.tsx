@@ -84,6 +84,7 @@ const Graph = (props: GraphProps) => {
     useEffect(() => {
         chartUpdate();
     }, [breedChart]);
+
     useEffect(() => {
         if(props.breeds.length === 0){
             props.setHidden(true);
@@ -97,6 +98,7 @@ const Graph = (props: GraphProps) => {
                 avg_weight: apiAvg(breed.weight.imperial),
                 avg_life_span: apiAvg(breed.life_span),
                 life_span: breed.life_span,
+                img: breed.image!.url!
             };
             return retBreed;
         });

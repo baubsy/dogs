@@ -33,6 +33,7 @@ const SearchByStat = () => {
                 avg_life_span: apiAvg(breed.life_span),
                 life_span: breed.life_span,
                 img: breed.image!.url!,
+                image: breed.image!
             };
             return retBreed;
         });

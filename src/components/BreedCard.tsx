@@ -13,7 +13,7 @@ const BreedCard = (props: CardProps) => {
                 <CardMedia
                     component="img"
                     height="140"
-                    image= {props.breed.img}
+                    image= {props.breed.image!.url}
                     alt={props.breed.name}
                     />
                 <CardContent>

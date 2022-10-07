@@ -67,6 +67,7 @@ const Selection = (props: SelectionProps) => {
             <Grid container>
                 <Grid item xs={11}>
                     <Autocomplete
+                        disableCloseOnSelect
                         value={props.selectedBreeds}
                         getOptionDisabled={checkDisable}
                         multiple
@@ -125,7 +126,9 @@ const Selection = (props: SelectionProps) => {
                     </RadioGroup>
                 </FormControl>
             </Grid>
-            <button onClick={() => console.log(props.selectedBreeds)}>debug</button>
+            <button onClick={() => console.log(props.selectedBreeds)}>
+                debug
+            </button>
         </div>
     );
 };

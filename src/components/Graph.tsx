@@ -10,6 +10,7 @@ interface GraphProps {
     units: string;
     hidden: boolean;
     setHidden: Function;
+    setModalBreed: Function;
 }
 
 const Graph = (props: GraphProps) => {
@@ -35,7 +36,7 @@ const Graph = (props: GraphProps) => {
                 height: 500,
                 color: "#A8926C",
                 yDomain: undefined,
-            });
+            }, props.setModalBreed);
             setTitle("Average Height");
             setBreedChart(chart);
         } else if (props.compare === "weight") {
@@ -54,7 +55,7 @@ const Graph = (props: GraphProps) => {
                 color: "#A8926C",
                 title: "values",
                 yDomain: undefined,
-            });
+            }, props.setModalBreed);
             setTitle("Average Weight");
             setBreedChart(chart);
         } else if (props.compare === "lifespan") {
@@ -73,7 +74,7 @@ const Graph = (props: GraphProps) => {
                 color: "#A8926C",
                 title: "values",
                 yDomain: undefined,
-            });
+            }, props.setModalBreed);
             setTitle("Average Lifespan");
             setBreedChart(chart);
         }
@@ -119,7 +120,7 @@ const Graph = (props: GraphProps) => {
                 color: "#A8926C",
                 title: "values",
                 yDomain: undefined,
-            });
+            }, props.setModalBreed);
             setBreedChart(chart);
         }
     }, [modBreeds]);

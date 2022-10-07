@@ -125,6 +125,7 @@ const Selection = (props: SelectionProps) => {
                     </RadioGroup>
                 </FormControl>
             </Grid>
+            <button onClick={() => console.log(props.selectedBreeds)}>debug</button>
         </div>
     );
 };

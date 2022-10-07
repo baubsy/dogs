@@ -10,6 +10,8 @@ const Main = () => {
     const [compare, setCompare] = useState("weight");
     const [units, setUnits] = useState("imperial");
     const [graphHidden, setGraphHidden] = useState(true);
+    const [modalBreed, setModalBreed] = useState();
+    const [modalOpen, setModalOpen] = useState(false);
 
     const logbreeds = () => {
         console.log(selectedBreeds);
@@ -26,6 +28,7 @@ const Main = () => {
                             compare={compare}
                             breeds={selectedBreeds}
                             units={units}
+                            setModalBreed={setModalBreed}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -38,6 +41,7 @@ const Main = () => {
                         />
                     </Grid>
                 </Grid>
+                <button onClick={()=> console.log(modalBreed)}>Debug click</button>
             </Box>
         </Container>       
     );

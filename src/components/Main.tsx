@@ -5,6 +5,7 @@ import BreedCard from "./BreedCard";
 import IBreed from "../dogBreed";
 import Graph from "./Graph";
 import Header from "./Header";
+import useModdedBreeds from "../hooks/useModdedBreeds";
 
 const Main = () => {
     const [selectedBreeds, setSelectedBreeds] = useState<IBreed[]>([]);
@@ -13,6 +14,7 @@ const Main = () => {
     const [graphHidden, setGraphHidden] = useState(true);
     const [modalBreed, setModalBreed] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
+    const moddedBreeds = useModdedBreeds(selectedBreeds);
 
     const logbreeds = () => {
         console.log(selectedBreeds);
@@ -26,7 +28,7 @@ const Main = () => {
         <Container>
             <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
                 <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: 'translate(-50%, -50%)' }}>
-                    <BreedCard breed={selectedBreeds[modalBreed]} />
+                    <BreedCard breed={moddedBreeds[modalBreed]} />
                 </Box>
             </Modal>
 
@@ -52,7 +54,7 @@ const Main = () => {
                         />
                     </Grid>
                 </Grid>
-                <button onClick={() => console.log(modalOpen)}>
+                <button onClick={() => console.log(moddedBreeds)}>
                     Debug click
                 </button>
             </Box>

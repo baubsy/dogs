@@ -11,6 +11,9 @@ text {
   word-break: break-all; 
   max-block-size: 100px;
 }
+rect:hover {
+  fill:#706248;
+}
 .header {
   background-color: #CEE1F5;
   border-bottom: 2px solid black;

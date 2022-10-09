@@ -10,6 +10,7 @@ import {
     Box,
 } from "@mui/material";
 import BreedCard from "./BreedCard";
+import useModdedBreeds from "../hooks/useModdedBreeds";
 
 import IBreed from "../dogBreed";
 
@@ -22,23 +23,8 @@ const SearchByStat = () => {
     useEffect(() => {
         getBreeds();
     }, []);
-    useEffect(() => {
-        const moddedBreeds = breeds.map((breed) => {
-            const retBreed = {
-                height: breed.height,
-                avg_height: apiAvg(breed.height.imperial),
-                name: breed.name,
-                weight: breed.weight,
-                avg_weight: apiAvg(breed.weight.imperial),
-                avg_life_span: apiAvg(breed.life_span),
-                life_span: breed.life_span,
-                img: breed.image!.url!,
-                image: breed.image!
-            };
-            return retBreed;
-        });
-        setModBreeds(moddedBreeds);
-    }, [breeds]);
+
+   useModdedBreeds(breeds, setModBreeds);
 
     useEffect(() => {
         setListedBreeds([]);
@@ -110,14 +96,6 @@ const SearchByStat = () => {
         setListedBreeds(breedArr);
     }, [selection, modBreeds]);
 
-    const apiAvg = (str: string) => {
-        if (!str.includes("-")) {
-            return parseInt(str);
-        }
-        const arr = str.split("-");
-        const retArr = arr.map((x) => parseFloat(x.replace(/[^0-9.]/g, "")));
-        return (retArr[0] + retArr[1]) / 2;
-    };
     const getBreeds = async () => {
         const response = await dogsAPI.get("/breeds");
         setBreeds(response.data);

@@ -14,12 +14,13 @@ const Main = () => {
     const [graphHidden, setGraphHidden] = useState(true);
     const [modalBreed, setModalBreed] = useState(0);
     const [modalOpen, setModalOpen] = useState(false);
-    const moddedBreeds = useModdedBreeds(selectedBreeds);
+    const [moddedBreeds, setModdedBreeds] = useState<IBreed[]>([]);
+
+    useModdedBreeds(selectedBreeds, setModdedBreeds);
 
     const logbreeds = () => {
         console.log(selectedBreeds);
     };
-    //TODO selectedBreeds doesn't have the averages BreedCard uses and shows no stats
     const handleModal = (breedIndex: number) => {
         setModalBreed(breedIndex);
         setModalOpen(true);

@@ -3,6 +3,7 @@ import IBreed from "../dogBreed";
 import * as d3 from "d3";
 import BarChart from "../barChart";
 import { Grid, Box } from "@mui/material";
+import useModdedBreeds from '../hooks/useModdedBreeds';
 
 interface GraphProps {
     compare: string;
@@ -18,6 +19,8 @@ const Graph = (props: GraphProps) => {
     const [breedChart, setBreedChart] = useState<any>(null);
     const svgRef = useRef<HTMLDivElement>(null);
     const [title, setTitle] = useState(" Average Weight");
+    
+    useModdedBreeds(props.breeds, setModBreeds);
 
     useEffect(() => {
         if (props.compare === "height") {
@@ -89,20 +92,6 @@ const Graph = (props: GraphProps) => {
         if(props.breeds.length === 0){
             props.setHidden(true);
         }
-        const moddedBreeds = props.breeds.map((breed) => {
-            const retBreed = {
-                height: breed.height,
-                avg_height: apiAvg(breed.height.imperial),
-                name: breed.name,
-                weight: breed.weight,
-                avg_weight: apiAvg(breed.weight.imperial),
-                avg_life_span: apiAvg(breed.life_span),
-                life_span: breed.life_span,
-                img: breed.image!.url!
-            };
-            return retBreed;
-        });
-        setModBreeds(moddedBreeds);
     }, [props.breeds]);
 
     useEffect(() => {
@@ -127,14 +116,6 @@ const Graph = (props: GraphProps) => {
         }
     }, [modBreeds]);
 
-    const apiAvg = (str: string) => {
-        if (!str.includes("-")) {
-            return parseInt(str);
-        }
-        const arr = str.split("-");
-        const retArr = arr.map((x) => parseFloat(x.replace(/[^0-9.]/g, "")));
-        return (retArr[0] + retArr[1]) / 2;
-    };
     const chartUpdate = () => {
         if (svgRef.current != null) {
             const svg = d3.select(svgRef.current);

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import IBreed from "../dogBreed";
 
-const useModdedBreeds = (breeds: IBreed[]) => {
-    const [moddedBreeds, setModdedBreeds] = useState<IBreed[]>([]);
+const useModdedBreeds = (breeds: IBreed[], setBreeds: Function) => {
+
 
     const apiAvg = (str: string) => {
         if (!str.includes("-")) {
@@ -27,10 +27,10 @@ const useModdedBreeds = (breeds: IBreed[]) => {
             };
             return retBreed;
         });
-        setModdedBreeds(mBreeds);
+        setBreeds(mBreeds);
     }, [breeds])
     
-    return moddedBreeds;
+    
 };
 
 export default useModdedBreeds;

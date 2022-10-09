@@ -24,7 +24,7 @@ const SearchByStat = () => {
         getBreeds();
     }, []);
 
-   useModdedBreeds(breeds, setModBreeds);
+    useModdedBreeds(breeds, setModBreeds);
 
     useEffect(() => {
         setListedBreeds([]);
@@ -86,7 +86,9 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
-                        breedArr.sort((a, b) => a.avg_life_span! - b.avg_life_span!);
+                        breedArr.sort(
+                            (a, b) => a.avg_life_span! - b.avg_life_span!
+                        );
                         break;
                     default:
                         console.log("switch error");
@@ -100,16 +102,7 @@ const SearchByStat = () => {
         const response = await dogsAPI.get("/breeds");
         setBreeds(response.data);
     };
-    const debugClick = () => {
-        let dBreed: IBreed = modBreeds[0];
-        modBreeds.map((mBreed) => {
-            if (mBreed!.avg_weight! < dBreed!.avg_weight!) {
-                dBreed = mBreed;
-            }
-        });
-        console.log(listedBreeds);
-        console.log(dBreed);
-    };
+
     return (
         <Grid container alignItems="center" justifyContent="center">
             <Grid item xs={12}>
@@ -155,7 +148,12 @@ const SearchByStat = () => {
                     </RadioGroup>
                 </FormControl>
             </Box>
-            <Grid container spacing={2} alignItems="center" justifyContent="center">
+            <Grid
+                container
+                spacing={2}
+                alignItems="center"
+                justifyContent="center"
+            >
                 {listedBreeds.map((breed) => (
                     <Grid item>
                         <BreedCard breed={breed} />

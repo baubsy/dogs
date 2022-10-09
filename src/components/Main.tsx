@@ -18,9 +18,6 @@ const Main = () => {
 
     useModdedBreeds(selectedBreeds, setModdedBreeds);
 
-    const logbreeds = () => {
-        console.log(selectedBreeds);
-    };
     const handleModal = (breedIndex: number) => {
         setModalBreed(breedIndex);
         setModalOpen(true);
@@ -28,7 +25,14 @@ const Main = () => {
     return (
         <Container>
             <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-                <Box sx={{ position: "absolute", top: "50%", left: "50%", transform: 'translate(-50%, -50%)' }}>
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                    }}
+                >
                     <BreedCard breed={moddedBreeds[modalBreed]} />
                 </Box>
             </Modal>
@@ -55,9 +59,6 @@ const Main = () => {
                         />
                     </Grid>
                 </Grid>
-                <button onClick={() => console.log(moddedBreeds)}>
-                    Debug click
-                </button>
             </Box>
         </Container>
     );

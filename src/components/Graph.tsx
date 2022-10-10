@@ -3,6 +3,7 @@ import IBreed from "../dogBreed";
 import * as d3 from "d3";
 import BarChart from "../barChart";
 import { Grid, Box } from "@mui/material";
+import useModdedBreeds from "../hooks/useModdedBreeds";
 
 interface GraphProps {
     compare: string;
@@ -10,6 +11,7 @@ interface GraphProps {
     units: string;
     hidden: boolean;
     setHidden: Function;
+    setModalBreed: Function;
 }
 
 const Graph = (props: GraphProps) => {
@@ -18,120 +20,117 @@ const Graph = (props: GraphProps) => {
     const svgRef = useRef<HTMLDivElement>(null);
     const [title, setTitle] = useState(" Average Weight");
 
+    useModdedBreeds(props.breeds, setModBreeds);
+
     useEffect(() => {
         if (props.compare === "height") {
-            const chart = BarChart(modBreeds, {
-                x: (d) => d.name,
-                y: (d) => d.avg_height,
-                title: "values",
-                xDomain: d3.groupSort(
-                    modBreeds,
-                    ([d]) => d.name,
-                    (d) => d.name
-                ),
-                yFormat: "f",
-                yLabel: "Inches",
-                width: 500,
-                height: 500,
-                color: "#A8926C",
-                yDomain: undefined,
-            });
+            const chart = BarChart(
+                modBreeds,
+                {
+                    x: (d) => d.name,
+                    y: (d) => d.avg_height,
+                    title: "values",
+                    xDomain: d3.groupSort(
+                        modBreeds,
+                        ([d]) => d.name,
+                        (d) => d.name
+                    ),
+                    yFormat: "f",
+                    yLabel: "Inches",
+                    width: 500,
+                    height: 500,
+                    color: "#A8926C",
+                    yDomain: undefined,
+                },
+                props.setModalBreed
+            );
             setTitle("Average Height");
             setBreedChart(chart);
         } else if (props.compare === "weight") {
-            const chart = BarChart(modBreeds, {
-                x: (d) => d.name,
-                y: (d) => d.avg_weight,
-                xDomain: d3.groupSort(
-                    modBreeds,
-                    ([d]) => d.name,
-                    (d) => d.name
-                ),
-                yFormat: "f",
-                yLabel: "Pounds",
-                width: 500,
-                height: 500,
-                color: "#A8926C",
-                title: "values",
-                yDomain: undefined,
-            });
+            const chart = BarChart(
+                modBreeds,
+                {
+                    x: (d) => d.name,
+                    y: (d) => d.avg_weight,
+                    xDomain: d3.groupSort(
+                        modBreeds,
+                        ([d]) => d.name,
+                        (d) => d.name
+                    ),
+                    yFormat: "f",
+                    yLabel: "Pounds",
+                    width: 500,
+                    height: 500,
+                    color: "#A8926C",
+                    title: "values",
+                    yDomain: undefined,
+                },
+                props.setModalBreed
+            );
             setTitle("Average Weight");
             setBreedChart(chart);
         } else if (props.compare === "lifespan") {
-            const chart = BarChart(modBreeds, {
-                x: (d) => d.name,
-                y: (d) => d.avg_life_span,
-                xDomain: d3.groupSort(
-                    modBreeds,
-                    ([d]) => d.name,
-                    (d) => d.name
-                ),
-                yFormat: "f",
-                yLabel: "Years",
-                width: 500,
-                height: 500,
-                color: "#A8926C",
-                title: "values",
-                yDomain: undefined,
-            });
+            const chart = BarChart(
+                modBreeds,
+                {
+                    x: (d) => d.name,
+                    y: (d) => d.avg_life_span,
+                    xDomain: d3.groupSort(
+                        modBreeds,
+                        ([d]) => d.name,
+                        (d) => d.name
+                    ),
+                    yFormat: "f",
+                    yLabel: "Years",
+                    width: 500,
+                    height: 500,
+                    color: "#A8926C",
+                    title: "values",
+                    yDomain: undefined,
+                },
+                props.setModalBreed
+            );
             setTitle("Average Lifespan");
             setBreedChart(chart);
         }
-        //chartUpdate();
     }, [props.compare]);
 
     useEffect(() => {
         chartUpdate();
     }, [breedChart]);
+
     useEffect(() => {
-        if(props.breeds.length === 0){
+        if (props.breeds.length === 0) {
             props.setHidden(true);
         }
-        const moddedBreeds = props.breeds.map((breed) => {
-            const retBreed = {
-                height: breed.height,
-                avg_height: apiAvg(breed.height.imperial),
-                name: breed.name,
-                weight: breed.weight,
-                avg_weight: apiAvg(breed.weight.imperial),
-                avg_life_span: apiAvg(breed.life_span),
-                life_span: breed.life_span,
-            };
-            return retBreed;
-        });
-        setModBreeds(moddedBreeds);
     }, [props.breeds]);
 
     useEffect(() => {
         if (modBreeds.length > 0) {
-            const chart = BarChart(modBreeds, {
-                x: (d) => d.name,
-                y: (d) => d.avg_weight,
-                xDomain: d3.groupSort(
-                    modBreeds,
-                    ([d]) => d.name,
-                    (d) => d.name
-                ),
-                yFormat: "f",
-                yLabel: "Pounds",
-                width: 500,
-                height: 500,
-                color: "#A8926C",
-                title: "values",
-                yDomain: undefined,
-            });
+            const chart = BarChart(
+                modBreeds,
+                {
+                    x: (d) => d.name,
+                    y: (d) => d.avg_weight,
+                    xDomain: d3.groupSort(
+                        modBreeds,
+                        ([d]) => d.name,
+                        (d) => d.name
+                    ),
+                    yFormat: "f",
+                    yLabel: "Pounds",
+                    width: 500,
+                    height: 500,
+                    color: "#A8926C",
+                    title: "values",
+                    yDomain: undefined,
+                },
+                props.setModalBreed
+            );
             setBreedChart(chart);
         }
     }, [modBreeds]);
 
-    const apiAvg = (str: string) => {
-        if (!str.includes("-")) {
-            return parseInt(str);
-        }
-        const arr = str.split("-");
-        const retArr = arr.map((x) => parseFloat(x.replace(/[^0-9.]/g, "")));
-        return (retArr[0] + retArr[1]) / 2;
-    };
     const chartUpdate = () => {
         if (svgRef.current != null) {
             const svg = d3.select(svgRef.current);
@@ -140,11 +139,6 @@ const Graph = (props: GraphProps) => {
                 svg.node()?.appendChild(breedChart);
             }
         }
-    };
-    const handleClick = () => {
-        console.log(modBreeds);
-        //const svg = d3.select(svgRef.current).node().appendChild(breedChart);
-        props.setHidden(!props.hidden);
     };
 
     return (

@@ -10,6 +10,7 @@ import {
     Box,
 } from "@mui/material";
 import BreedCard from "./BreedCard";
+import useModdedBreeds from "../hooks/useModdedBreeds";
 
 import IBreed from "../dogBreed";
 
@@ -22,22 +23,8 @@ const SearchByStat = () => {
     useEffect(() => {
         getBreeds();
     }, []);
-    useEffect(() => {
-        const moddedBreeds = breeds.map((breed) => {
-            const retBreed = {
-                height: breed.height,
-                avg_height: apiAvg(breed.height.imperial),
-                name: breed.name,
-                weight: breed.weight,
-                avg_weight: apiAvg(breed.weight.imperial),
-                avg_life_span: apiAvg(breed.life_span),
-                life_span: breed.life_span,
-                img: breed.image!.url!,
-            };
-            return retBreed;
-        });
-        setModBreeds(moddedBreeds);
-    }, [breeds]);
+
+    useModdedBreeds(breeds, setModBreeds);
 
     useEffect(() => {
         setListedBreeds([]);
@@ -99,7 +86,9 @@ const SearchByStat = () => {
                                 break;
                             }
                         }
-                        breedArr.sort((a, b) => a.avg_life_span! - b.avg_life_span!);
+                        breedArr.sort(
+                            (a, b) => a.avg_life_span! - b.avg_life_span!
+                        );
                         break;
                     default:
                         console.log("switch error");
@@ -109,28 +98,11 @@ const SearchByStat = () => {
         setListedBreeds(breedArr);
     }, [selection, modBreeds]);
 
-    const apiAvg = (str: string) => {
-        if (!str.includes("-")) {
-            return parseInt(str);
-        }
-        const arr = str.split("-");
-        const retArr = arr.map((x) => parseFloat(x.replace(/[^0-9.]/g, "")));
-        return (retArr[0] + retArr[1]) / 2;
-    };
     const getBreeds = async () => {
         const response = await dogsAPI.get("/breeds");
         setBreeds(response.data);
     };
-    const debugClick = () => {
-        let dBreed: IBreed = modBreeds[0];
-        modBreeds.map((mBreed) => {
-            if (mBreed!.avg_weight! < dBreed!.avg_weight!) {
-                dBreed = mBreed;
-            }
-        });
-        console.log(listedBreeds);
-        console.log(dBreed);
-    };
+
     return (
         <Grid container alignItems="center" justifyContent="center">
             <Grid item xs={12}>
@@ -176,7 +148,12 @@ const SearchByStat = () => {
                     </RadioGroup>
                 </FormControl>
             </Box>
-            <Grid container spacing={2} alignItems="center" justifyContent="center">
+            <Grid
+                container
+                spacing={2}
+                alignItems="center"
+                justifyContent="center"
+            >
                 {listedBreeds.map((breed) => (
                     <Grid item>
                         <BreedCard breed={breed} />

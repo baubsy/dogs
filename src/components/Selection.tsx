@@ -67,6 +67,7 @@ const Selection = (props: SelectionProps) => {
             <Grid container>
                 <Grid item xs={11}>
                     <Autocomplete
+                        disableCloseOnSelect
                         value={props.selectedBreeds}
                         getOptionDisabled={checkDisable}
                         multiple

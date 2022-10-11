@@ -19,22 +19,23 @@ const Header = () => {
                     xs={12}
                     justifyContent="center"
                     alignContent="center"
+                    spacing={10}
                 >
-                    <Grid item xs={2}>
+                    <Grid item xs={2} justifyContent="center">
                         <Button>
                             <Link to="/" component={RouterLink} underline="none">
-                                Graph Comparison
+                                Graph Tool
                             </Link>
                         </Button>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} justifyContent="center" justifyItems="center">
                         <Button>
                             <Link to="/statSearch" component={RouterLink} underline="none">
-                                Top Dogs by Stat
+                                Top Five                                
                             </Link>
                         </Button>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} justifyContent="center">
                         <Button>
                             <Link to="/about" component={RouterLink} underline="none">
                                 About

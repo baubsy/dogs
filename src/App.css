@@ -1,12 +1,7 @@
 h1 {
   text-align: center;
 }
-p {
-  text-align: center;
-}
-a {
-  text-align: center;
-}
+
 text {
   word-break: break-all; 
   max-block-size: 100px;
@@ -22,6 +17,11 @@ rect:hover {
 .title{
   margin: auto;
   width: fit-content;
+}
+.footer{
+  justify-content: left;
+  padding-left: 5px;
+  align-items: end;
 }
 
 .radioForm {

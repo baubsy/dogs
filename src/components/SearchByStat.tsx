@@ -106,7 +106,7 @@ const SearchByStat = () => {
     return (
         <Grid container alignItems="center" justifyContent="center">
             <Grid item xs={12}>
-                <h1>Search by Stat</h1>
+                <h1>Top Five By Stat</h1>
             </Grid>
             <Box alignItems="center" justifyContent="center">
                 <FormControl className="formControl">

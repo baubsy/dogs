@@ -143,6 +143,9 @@ const Graph = (props: GraphProps) => {
 
     return (
         <Grid container alignItems="center" justifyContent="center">
+            <Grid item xs={12}>
+                <h1>Graph Comparison Tool</h1>
+            </Grid>
             <Grid item xs={12} justifyContent="center" alignItems="center">
                 <h1 hidden={props.hidden}>{title}</h1>
             </Grid>

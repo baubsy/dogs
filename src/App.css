@@ -1,12 +1,7 @@
 h1 {
   text-align: center;
 }
-p {
-  text-align: center;
-}
-a {
-  text-align: center;
-}
+
 text {
   word-break: break-all; 
   max-block-size: 100px;
@@ -18,10 +13,18 @@ rect:hover {
   background-color: #CEE1F5;
   border-bottom: 2px solid black;
   margin-bottom: 5px;
+  
 }
 .title{
   margin: auto;
   width: fit-content;
+}
+.footer{
+  justify-content: left;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 100%;
+  bottom: 0
 }
 
 .radioForm {

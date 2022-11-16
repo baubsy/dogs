@@ -1,45 +1,33 @@
 import React from "react";
 import { Button, Grid, Typography, Link } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useHistory } from "react-router-dom";
 import About from "./About";
 import Main from "./Main";
 
 const Header = () => {
+    let history = useHistory();
     return (
         <div className="header">
-            <Grid container>
+            <Grid container justifyContent="center">
                 <Grid item xs={12}>
                     <h1 className="title">
                         Dog Breeds Information <i className="fa-solid fa-dog" />
                     </h1>
                 </Grid>
-                <Grid
-                    container
-                    item
-                    xs={12}
-                    justifyContent="center"
-                    alignContent="center"
-                    spacing={10}
-                >
-                    <Grid item xs={2} justifyContent="center">
-                        <Button>
-                            <Link to="/" component={RouterLink} underline="none">
-                                Graph Tool
-                            </Link>
+                <Grid container item xs={12} spacing={10} justifyContent="center">
+                    <Grid item xs ={2} style={{textAlign: "center"}}>
+                        <Button onClick={() => history.push("/")}>
+                            Graph Tool
                         </Button>
                     </Grid>
-                    <Grid item xs={2} justifyContent="center" justifyItems="center">
-                        <Button>
-                            <Link to="/statSearch" component={RouterLink} underline="none">
-                                Top Five                                
-                            </Link>
+                    <Grid item xs={2} style={{textAlign: "center"}}>
+                        <Button onClick={() => history.push("/statsearch")}>
+                            Top Five
                         </Button>
                     </Grid>
-                    <Grid item xs={2} justifyContent="center">
-                        <Button>
-                            <Link to="/about" component={RouterLink} underline="none">
-                                About
-                            </Link>
+                    <Grid item xs={2} style={{textAlign: "center"}}>
+                        <Button onClick={() => history.push("/about")}>
+                            About
                         </Button>
                     </Grid>
                 </Grid>

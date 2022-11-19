@@ -65,7 +65,7 @@ const Selection = (props: SelectionProps) => {
     return (
         <div>
             <Grid container>
-                <Grid item xs={11}>
+                <Grid item xs={10}>
                     <Autocomplete
                         disableCloseOnSelect
                         value={props.selectedBreeds}
@@ -87,7 +87,7 @@ const Selection = (props: SelectionProps) => {
                     />
                 </Grid>
                 <Tooltip title={buttonTooltip}>
-                    <Grid item xs={1} style={{ display: "flex" }}>
+                    <Grid item xs={2} style={{ display: "flex" }}>
                         <Button
                             disabled={buttonDisable}
                             onClick={handleClick}

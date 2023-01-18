@@ -14,18 +14,18 @@ const Header = () => {
                         Dog Breeds Information <i className="fa-solid fa-dog" />
                     </h1>
                 </Grid>
-                <Grid container item xs={12} spacing={10} justifyContent="center">
-                    <Grid item xs ={2} style={{textAlign: "center"}}>
+                <Grid container item xs={12} spacing={10} justifyContent="center" whiteSpace="nowrap" textAlign="center">
+                    <Grid item xs ={3}>
                         <Button onClick={() => history.push("/")}>
                             Graph Tool
                         </Button>
                     </Grid>
-                    <Grid item xs={2} style={{textAlign: "center"}}>
+                    <Grid item xs={3}>
                         <Button onClick={() => history.push("/statsearch")}>
                             Top Five
                         </Button>
                     </Grid>
-                    <Grid item xs={2} style={{textAlign: "center"}}>
+                    <Grid item xs={3}>
                         <Button onClick={() => history.push("/about")}>
                             About
                         </Button>
